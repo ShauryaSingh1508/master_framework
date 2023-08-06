@@ -1,0 +1,59 @@
+version: "0.1"
+user: shauryasingh1508
+key: dlUtov4GDGyx41JnPqhgpIeQlVbJz90BXfwIonZ48cCpq5S03G
+testSuites: []
+pre: [mvn -Dmaven.repo.local=$CACHE_DIR -Dmaven.test.skip=true clean install]
+preDirectives:
+    commands: [mvn -Dmaven.repo.local=$CACHE_DIR -Dmaven.test.skip=true clean install]
+    maxRetries: 0
+    shell: ""
+    workingDirectory: ""
+postDirectives:
+    commands: []
+    shell: ""
+    workingDirectory: ""
+env:
+    CACHE_DIR: m2_cache_dir
+runson: win
+autosplit: true
+concurrency: 4
+testDiscovery:
+    autosubset: true
+    command: grep 'test name' ./testng.xml | awk '{print$2}' | sed 's/name=//g' | sed 's/\x3e//g'
+    mode: dynamic
+    type: raw
+testRunnerCommand: mvn test `-Dplatname=win `-Dmaven.repo.local=m2_cache_dir `-DselectedTests=$test
+globalTimeout: 150
+testSuiteTimeout: 150
+testSuiteStep: 150
+cacheDirectories:
+    - $CACHE_DIR
+cacheKey: '{{ checksum "pom.xml" }}'
+retryOnFailure: true
+maxRetries: 1
+jobID: 12cdcd28-807b-45dc-b4e0-051812bc3c94
+codeDirectory: master_framework
+framework:
+    name: ""
+    flags: []
+    discoveryFlags: []
+    discoveryType: ""
+    runnerFlags: []
+    workingDirectory: ""
+    isTestNGXMLSuite: false
+    defaultReports: true
+    additional_args: null
+    licenseKey: ""
+    userdefinediscovery: false
+    toscaArgs: null
+    version: ""
+    downloadURL: ""
+cypress: false
+betaFeature:
+    setPartiallyCompletedAsCompleted: false
+combineTasksInMatrixMode: false
+captureScreenRecordingForScenarios: false
+maxRetriesPreSteps: 0
+triggerMode: false
+collectLocalGitData: true
+dynamicAllocation: false

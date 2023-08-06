@@ -1,0 +1,34 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<!--<suite name="Suite1" verbose="1" thread-count="2" parallel="tests">-->
+<suite name="Suite1" verbose="1">
+    <listeners>
+        <listener class-name="com.northladder.listeners.TestListener"/>
+    </listeners>
+<!--    <test name="Chrome">-->
+<!--        <parameter name="browser" value="CHROME"/>-->
+<!--        <packages>-->
+<!--            <package name="org.northladder.web.tests" >-->
+<!--&lt;!&ndash;                <methods>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <include name="NavigateFromHomeToStoreUsingMainMenu"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                </methods>&ndash;&gt;-->
+<!--            </package>-->
+<!--        </packages>-->
+<!--    </test>-->
+   <test name="APITest" >
+    <!--thread-count="2" parallel="methods"-->
+        <parameter name="browser"  value="CHROME"/>
+        <parameter name="env"  value="DEV"/>
+       <parameter name="envToExecute"  value="local"/>
+<!--       <parameter name="mail"  value="mailtrap"/>-->
+        <classes>
+                    <class name="com.northladder.web.tests.UpdateGradeTest"/>
+<!--                    <class name="org.northladder.api.tests.GetMailtrapPropsTest"/>-->
+<!--                        <methods>-->
+<!--                            <include name="getMessageID"/>-->
+<!--                        </methods>-->
+<!--                    </class>-->
+
+        </classes>
+    </test>
+</suite>
