@@ -192,8 +192,8 @@ public class UpdateGrade extends WebBasePage{
         secondGradePercentage = dataFormatter.formatCellValue(cell6);
         Cell cell7 = row.getCell(5);
         thirdGradePercentage = dataFormatter.formatCellValue(cell7);
-        Cell cell8 = row.getCell(6);
-        thirdGradePercentage = dataFormatter.formatCellValue(cell7);
+       /* Cell cell8 = row.getCell(6);
+        thirdGradePercentage = dataFormatter.formatCellValue(cell7);*/
         List<WebElement> webElementsList = driver.findElements(getListOfChecklist);
         for (int i = 0; i < webElementsList.size(); i++) {
             String text = getText(By.xpath(getchecklistvalue1 + (i + 1) + getchecklistvalue2));

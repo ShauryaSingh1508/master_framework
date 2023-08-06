@@ -45,8 +45,7 @@ public class UpdateGradeTest extends BaseTest {
     private void navigateToTheAssetChecklist(String category, String brandName, String assetGroup, String storage,ArrayList<Cell> itemConditionList,Row row) throws Exception {
 
         new UpdateGrade(getDriver()).selectCategory(category).selectBrand(brandName).
-                selectAssetGroup(assetGroup).selectAssetStorge(storage);//.selectAllChecklistName(itemConditionList, row);
-        //Thread.sleep(2000);
+                selectAssetGroup(assetGroup).selectAssetStorge(storage);
         editTheAssetCheclist(itemConditionList, row);
     }
 
@@ -154,15 +153,16 @@ public class UpdateGradeTest extends BaseTest {
                         navigateToTheAssetChecklist(category, brandName, assetGroup, storage,gList, row);
                         ExcelUtils.setStatus(row,workbook);
 
-                        logutils.log().info("Executing the row number " + row.getRowNum() + " for the following records" +
-                                " "+category+ " "+ brandName+" "+" "+ assetGroup+" "+ storage+" "+gList);
+                        logutils.log().info("Executed the row number " + row.getRowNum() + " for the following records:- " +
+                                "Category as  "+category+ " Brand as "+ brandName+" Asset Group as "+ assetGroup+" Storage as "
+                                + storage+" And for the grades in the list "+gList);
 
                             }
 
                         }
 
         } catch (Exception e) {
-            throw new Exception("Failed to retrieve value from test data xlsx \n" + e.getMessage());
+            throw new Exception("The method has failed due to:-  \n" + e.getMessage());
 
         }finally {
             if(fileInputStream != null )
