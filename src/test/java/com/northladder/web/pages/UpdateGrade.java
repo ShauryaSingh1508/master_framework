@@ -69,6 +69,7 @@ public class UpdateGrade extends WebBasePage{
 
     public UpdateGrade searchBranch(String branchName) throws InterruptedException {
         enterTextInSearchFld(branchName).clickSearchBtn();
+        new WebDriverWait(driver, Duration.ofSeconds(1000));
         return this;
     }
 
