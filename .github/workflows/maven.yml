@@ -21,6 +21,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+    - uses: actions/checkout@v2
+    - name: start zalenium
+      uses: ajinx/zalenium@1.1
+
     - name: Start Selenoid server
       uses: n-ton4/selenoid-github-action@master
       id: start-selenoid
@@ -30,11 +35,7 @@ jobs:
           args: -limit 1
           browsers: chrome
           last-versions: 1
-    - uses: actions/checkout@v2
-    - name: start zalenium
-      uses: ajinx/zalenium@1.1
-      with:
-        port: 8080
+
 
     - name: is zalenium started?
       run: curl http://localhost:4444/status
