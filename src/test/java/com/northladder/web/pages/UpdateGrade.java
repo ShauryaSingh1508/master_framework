@@ -64,6 +64,7 @@ public class UpdateGrade extends WebBasePage{
         getWindowHandles();
         click(b2bMamgementTab);
         enterText(searchBranch,txt);
+        Thread.sleep(3000);
         return this;
     }
 
