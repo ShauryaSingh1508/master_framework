@@ -198,7 +198,7 @@ public class UpdateGrade extends WebBasePage{
         List<WebElement> webElementsList = driver.findElements(getListOfChecklist);
         for (int i = 0; i < webElementsList.size(); i++) {
             String text = getText(By.xpath(getchecklistvalue1 + (i + 1) + getchecklistvalue2));
-            logutils.log().info("Clicking on edit icon for the checklist " + text);
+            logutils.log().info("Clicking on edit icon for the checklist:-> " + text);
             click(By.xpath(getchecklistvalue1 + (i + 1) + clickChecklistEdit));
             for (Cell grade : itemConditionList) {
                 switch (grade.getStringCellValue()) {
@@ -229,7 +229,7 @@ public class UpdateGrade extends WebBasePage{
             boolean checkbox = isSelected(automationAvailble);
             for (int j = 0; j < webElementsList.size(); j++) {
                 String text = getText(By.xpath(getchecklistvalue1 + (j + 1) + getItemConditionValue));
-                logutils.log().info("Selecting the item condition from the list " + text);
+
                 if (text.equalsIgnoreCase(itemCondition)) {
                     if (!checkbox) {
                         click(By.xpath(getchecklistvalue1 + (j + 1) + clickItemConditionEditicon2));

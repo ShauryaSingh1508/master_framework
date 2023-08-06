@@ -17,7 +17,7 @@ public class WebBasePage {
 
     public WebBasePage(RemoteWebDriver driver){
         this.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(60));
     }
 
     public void load(String endPoint){
@@ -49,7 +49,7 @@ public class WebBasePage {
     }
 
     public void click(By by){
-        wait.until(ExpectedConditions.visibilityOfElementLocated(by)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(by)).click();
     }
 
     public void enterText(By by,String key){
@@ -61,8 +61,7 @@ public class WebBasePage {
      *
      */
     public String getText(By by){
-        String text = wait.until(ExpectedConditions.visibilityOfElementLocated(by)).getText();
-        return text;
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(by)).getText();
     }
 
     /**
@@ -71,8 +70,7 @@ public class WebBasePage {
      *
      */
     public boolean isSelected(By by){
-        boolean checkbox = driver.findElement(by).isSelected();
-        return checkbox;
+        return driver.findElement(by).isSelected();
     }
 
     /**
