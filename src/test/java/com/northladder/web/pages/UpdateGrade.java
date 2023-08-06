@@ -1,5 +1,6 @@
 package com.northladder.web.pages;
 
+import com.northladder.commonutils.TestUtils;
 import com.northladder.web.base.WebBasePage;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DataFormatter;
@@ -48,7 +49,7 @@ public class UpdateGrade extends WebBasePage{
     private final By prismTab = By.xpath("//*[@class='ps-content']/ul[2]/li/a");
     private final By b2bMamgementTab = By.xpath("//*[contains(@class,'MuiListItemText-root css') ]/p[text() = 'B2B Management']");
     private final By automationAvailble = By.xpath("//*[contains(@class,'MuiFormControlLabel-root MuiFormControlLabel')]/span/input[@type='checkbox']");
-
+    TestUtils logutils = new TestUtils();
     public UpdateGrade(RemoteWebDriver driver) {
         super(driver);
     }
@@ -197,17 +198,19 @@ public class UpdateGrade extends WebBasePage{
         List<WebElement> webElementsList = driver.findElements(getListOfChecklist);
         for (int i = 0; i < webElementsList.size(); i++) {
             String text = getText(By.xpath(getchecklistvalue1 + (i + 1) + getchecklistvalue2));
-            Reporter.log("Selected the checklist Value as  ->" + text);
+            logutils.log().info("Clicking on edit icon for the checklist " + text);
             click(By.xpath(getchecklistvalue1 + (i + 1) + clickChecklistEdit));
             for (Cell grade : itemConditionList) {
                 switch (grade.getStringCellValue()) {
                     case "B" -> {
                         String itemConditionDetail = grade + " - " + secondGradePercentage;
+                        logutils.log().info("Selecting the grade to change the %age to  " + itemConditionDetail);
                         selectItemCondition(grade.getStringCellValue(), itemConditionDetail);
                     }
 
                     case "C" -> {
                         String itemConditionDetail = grade + " - " + thirdGradePercentage;
+                        logutils.log().info("Selecting the grade to change the %age to  " + itemConditionDetail);
                         selectItemCondition(grade.getStringCellValue(), itemConditionDetail);
                     }
 
@@ -220,19 +223,19 @@ public class UpdateGrade extends WebBasePage{
         return this;
     }
 
-    public void selectItemCondition(String itemCondition,String itemConditionDetail) {
+    public void selectItemCondition(String itemCondition,String itemConditionDetail) throws Exception {
+        try {
             List<WebElement> webElementsList = driver.findElements(getListOfItemCondition);
             boolean checkbox = isSelected(automationAvailble);
             for (int j = 0; j < webElementsList.size(); j++) {
                 String text = getText(By.xpath(getchecklistvalue1 + (j + 1) + getItemConditionValue));
-
-                Reporter.log("Got the  item condition" + text);
+                logutils.log().info("Selecting the item condition from the list " + text);
                 if (text.equalsIgnoreCase(itemCondition)) {
-                    if(!checkbox) {
+                    if (!checkbox) {
                         click(By.xpath(getchecklistvalue1 + (j + 1) + clickItemConditionEditicon2));
                         updateItemConditionDetails(itemConditionDetail);
                         break;
-                    }else{
+                    } else {
                         click(By.xpath(getchecklistvalue1 + (j + 1) + clickItemConditionEditicon));
                         updateItemConditionDetails(itemConditionDetail);
                         break;
@@ -240,8 +243,11 @@ public class UpdateGrade extends WebBasePage{
                 }
             }
 
+        } catch (Exception e) {
+            logutils.log().error("Test failed to select the asset checklist"+getClass().getEnclosingMethod().getName());
+            throw new Exception(e.getMessage());
         }
-
+    }
 
 
     public void updateItemConditionDetails(String itemConditionDetail){
