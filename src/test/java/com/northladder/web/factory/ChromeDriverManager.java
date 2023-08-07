@@ -24,8 +24,8 @@ public class ChromeDriverManager implements DriverManager{
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--remote-allow-origins=*", "ignore-certificate-errors");
             //options.addArguments("--headless");
-            //driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), options);
-            driver = new RemoteWebDriver(new URL("http://zalenium:4444/wd/hub"), options);
+            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), options);
+            //driver = new RemoteWebDriver(new URL("http://zalenium:4444/wd/hub"), options);
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
             driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(100));
             driver.manage().window().maximize();
