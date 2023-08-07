@@ -25,6 +25,9 @@ jobs:
         image: "dosel/zalenium:3.141.59z"  # Specify the Zalenium version using the image tag
         ports:
           - "4444:4444"
+        options: >-
+          --desiredContainers 2
+          --env VIDEO_STORAGE=./test-output/videos
 
 
     steps:
@@ -59,4 +62,12 @@ jobs:
       with:
         name: sparkHtml
         path: ./test-output/WebAppReport.html
+
+    - name: Archive Video Recordings
+      uses: actions/upload-artifact@v3
+      with:
+        name: videos
+        path: ./test-output/videos
+
+
 
