@@ -19,6 +19,14 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    services:
+      zalenium:
+        image: "dosel/zalenium"
+        ports:
+          - "4444:4444"
+        options: >-
+          --startTunnel --desiredContainers 2
+
 
     steps:
 
@@ -52,7 +60,7 @@ jobs:
 #      env:
 #        SELENIUM_HUB_HOST: 'localhost'
       #run: mvn -B package --file pom.xml
-      run: mvn clean test -DXmlFile=testng.xml
+      run: mvn clean test -DXmlFile=testng.xml -DREMOTE_URL=http://zalenium:4444/wd/hub
 
     - name: Archive the artifacts
       uses: actions/upload-artifact@v3
