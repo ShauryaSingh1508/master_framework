@@ -22,11 +22,10 @@ jobs:
 
     services:
       zalenium:
-        image: "dosel/zalenium"
+        image: "dosel/zalenium:4.0.3"  # Specify the Zalenium version using the image tag
         ports:
           - "4444:4444"
-        options: >-
-          --desiredContainers 2
+
 
     steps:
 
