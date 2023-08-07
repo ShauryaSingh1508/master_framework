@@ -20,26 +20,28 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    steps:
-
-    - name: Fetch Docker Image Metadata
-      run: |
-            IMAGE_NAME=dosel/zalenium
-            IMAGE_METADATA=$(docker inspect $IMAGE_NAME)
-            echo "$IMAGE_METADATA" > image_metadata.json
-
-    - name: Display Zalenium Version
-      run: |
-            ZALENIUM_VERSION=$(cat image_metadata.json | jq -r '.[0].Config.Labels["version"]')
-            echo "Zalenium Version: $ZALENIUM_VERSION"
-
     services:
       zalenium:
         image: "dosel/zalenium"
         ports:
           - "4444:4444"
         options: >-
-          --startTunnel --desiredContainers 2        
+          --desiredContainers 2
+
+    steps:
+
+#    - name: Fetch Docker Image Metadata
+#      run: |
+#            IMAGE_NAME=dosel/zalenium
+#            IMAGE_METADATA=$(docker inspect $IMAGE_NAME)
+#            echo "$IMAGE_METADATA" > image_metadata.json
+#
+#    - name: Display Zalenium Version
+#      run: |
+#            ZALENIUM_VERSION=$(cat image_metadata.json | jq -r '.[0].Config.Labels["version"]')
+#            echo "Zalenium Version: $ZALENIUM_VERSION"
+
+
 
     - uses: actions/checkout@v2
 
