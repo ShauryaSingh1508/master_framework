@@ -23,13 +23,13 @@ jobs:
     steps:
 
     - name: Fetch Docker Image Metadata
-          run: |
+      run: |
             IMAGE_NAME=dosel/zalenium
             IMAGE_METADATA=$(docker inspect $IMAGE_NAME)
             echo "$IMAGE_METADATA" > image_metadata.json
 
     - name: Display Zalenium Version
-          run: |
+      run: |
             ZALENIUM_VERSION=$(cat image_metadata.json | jq -r '.[0].Config.Labels["version"]')
             echo "Zalenium Version: $ZALENIUM_VERSION"
 
