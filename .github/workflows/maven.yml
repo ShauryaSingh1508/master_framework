@@ -19,12 +19,12 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-#
-#    services:
-#      zalenium:
-#        image: "dosel/zalenium:3.141.59z"  # Specify the Zalenium version using the image tag
-#        ports:
-#          - "4444:4444"
+
+    services:
+      zalenium:
+        image: "dosel/zalenium:3.141.59z"  # Specify the Zalenium version using the image tag
+        ports:
+          - "4444:4444"
 
 
     steps:
@@ -51,7 +51,7 @@ jobs:
 
 
     - name: Build with Maven
-      run: mvn clean test -DXmlFile=testng.xml
+      run: mvn clean test -DXmlFile=testng.xml -DREMOTE_URL=http://zalenium:4444/wd/hub
 
 
     - name: Archive the artifacts
