@@ -200,7 +200,7 @@ public class UpdateGrade extends WebBasePage{
             for (int i = 0; i < webElementsList.size(); i++) {
                 String text = getText(By.xpath(getchecklistvalue1 + (i + 1) + getchecklistvalue2));
                 logutils.log().info("Clicking on edit icon for the checklist:-> " + text);
-                wait.withTimeout(Duration.ofSeconds(2000));
+                Thread.sleep(2000);
                 click(By.xpath(getchecklistvalue1 + (i + 1) + clickChecklistEdit));
                 for (Cell grade : itemConditionList) {
                     switch (grade.getStringCellValue()) {
