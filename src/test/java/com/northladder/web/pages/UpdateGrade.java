@@ -187,37 +187,43 @@ public class UpdateGrade extends WebBasePage{
 
     public UpdateGrade selectAllChecklistName(ArrayList<Cell> itemConditionList,Row row) throws Exception {
 
-        String secondGradePercentage, thirdGradePercentage;
-        DataFormatter dataFormatter = new DataFormatter();
-        Cell cell6 = row.getCell(4);
-        secondGradePercentage = dataFormatter.formatCellValue(cell6);
-        Cell cell7 = row.getCell(5);
-        thirdGradePercentage = dataFormatter.formatCellValue(cell7);
+        try {
+            String secondGradePercentage, thirdGradePercentage;
+            DataFormatter dataFormatter = new DataFormatter();
+            Cell cell6 = row.getCell(4);
+            secondGradePercentage = dataFormatter.formatCellValue(cell6);
+            Cell cell7 = row.getCell(5);
+            thirdGradePercentage = dataFormatter.formatCellValue(cell7);
        /* Cell cell8 = row.getCell(6);
         thirdGradePercentage = dataFormatter.formatCellValue(cell7);*/
-        List<WebElement> webElementsList = driver.findElements(getListOfChecklist);
-        for (int i = 0; i < webElementsList.size(); i++) {
-            String text = getText(By.xpath(getchecklistvalue1 + (i + 1) + getchecklistvalue2));
-            logutils.log().info("Clicking on edit icon for the checklist:-> " + text);
-            click(By.xpath(getchecklistvalue1 + (i + 1) + clickChecklistEdit));
-            for (Cell grade : itemConditionList) {
-                switch (grade.getStringCellValue()) {
-                    case "B" -> {
-                        String itemConditionDetail = grade + " - " + secondGradePercentage;
-                        logutils.log().info("Selecting the grade to change the %age to  " + itemConditionDetail);
-                        selectItemCondition(grade.getStringCellValue(), itemConditionDetail);
+            List<WebElement> webElementsList = driver.findElements(getListOfChecklist);
+            for (int i = 0; i < webElementsList.size(); i++) {
+                String text = getText(By.xpath(getchecklistvalue1 + (i + 1) + getchecklistvalue2));
+                logutils.log().info("Clicking on edit icon for the checklist:-> " + text);
+                click(By.xpath(getchecklistvalue1 + (i + 1) + clickChecklistEdit));
+                for (Cell grade : itemConditionList) {
+                    switch (grade.getStringCellValue()) {
+                        case "B" -> {
+                            String itemConditionDetail = grade + " - " + secondGradePercentage;
+                            logutils.log().info("Selecting the grade to change the %age to  " + itemConditionDetail);
+                            selectItemCondition(grade.getStringCellValue(), itemConditionDetail);
+                        }
+
+                        case "C" -> {
+                            String itemConditionDetail = grade + " - " + thirdGradePercentage;
+                            logutils.log().info("Selecting the grade to change the %age to  " + itemConditionDetail);
+                            selectItemCondition(grade.getStringCellValue(), itemConditionDetail);
+                        }
+
+
                     }
-
-                    case "C" -> {
-                        String itemConditionDetail = grade + " - " + thirdGradePercentage;
-                        logutils.log().info("Selecting the grade to change the %age to  " + itemConditionDetail);
-                        selectItemCondition(grade.getStringCellValue(), itemConditionDetail);
-                    }
-
-
                 }
+                finalSave();
+
             }
-            finalSave();
+        }catch(Exception e){
+            logutils.log().error("Test failed to click the edit asset checklist"+getClass().getEnclosingMethod().getName());
+            throw new Exception(e.getMessage());
 
         }
         return this;

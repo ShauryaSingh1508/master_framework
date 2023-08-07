@@ -19,7 +19,7 @@
     <!--thread-count="2" parallel="methods"-->
         <parameter name="browser"  value="CHROME"/>
         <parameter name="env"  value="DEV"/>
-       <parameter name="envToExecute"  value="local"/>
+       <parameter name="envToExecute"  value="github"/>
 <!--       <parameter name="mail"  value="mailtrap"/>-->
         <classes>
                     <class name="com.northladder.web.tests.UpdateGradeTest"/>

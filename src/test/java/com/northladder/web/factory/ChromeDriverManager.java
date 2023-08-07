@@ -19,7 +19,7 @@ public class ChromeDriverManager implements DriverManager{
     @Override
     public RemoteWebDriver createDriver(String envToExecute) throws MalformedURLException {
 
-        if (envToExecute.equalsIgnoreCase("local")) {
+        if (envToExecute.equalsIgnoreCase("github")) {
             WebDriverManager.chromedriver().cachePath("Drivers").setup();
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--remote-allow-origins=*", "ignore-certificate-errors");
@@ -30,7 +30,7 @@ public class ChromeDriverManager implements DriverManager{
             driver.manage().window().maximize();
 //        driver.get("https://www.saucedemo.com/");
             return driver;
-        } else {
+        } else if(envToExecute.equalsIgnoreCase("lambdaTest")){
             ChromeOptions browserOptions = new ChromeOptions();
             browserOptions.setPlatformName("Windows 10");
             browserOptions.setBrowserVersion("114.0");
@@ -46,6 +46,17 @@ public class ChromeDriverManager implements DriverManager{
             ltOptions.put("video", true);
             browserOptions.setCapability("LT:Options", ltOptions);
             driver = new RemoteWebDriver(new URL("https://" + username + ":" + accesskey + gridURL),browserOptions);
+        } else{
+            WebDriverManager.chromedriver().cachePath("Drivers").setup();
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("--remote-allow-origins=*", "ignore-certificate-errors");
+            //options.addArguments("--headless");
+            driver = new ChromeDriver(options);
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+            driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(100));
+            driver.manage().window().maximize();
+//        driver.get("https://www.saucedemo.com/");
+            return driver;
         }
         return driver;
     }
