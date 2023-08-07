@@ -26,7 +26,6 @@ jobs:
         ports:
           - "4444:4444"
         options: >-
-          --desiredContainers 2
           --env VIDEO_STORAGE=./test-output/videos
 
 
