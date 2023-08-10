@@ -22,7 +22,7 @@ jobs:
 
     - name: Set up Appium
       run: |
-         npm install -gappium@v2.0.0-rc.4
+         npm install -g appium@v2.0.0-rc.4
          appium -v
          appium &>/dev/null &
 
