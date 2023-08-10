@@ -30,4 +30,4 @@ jobs:
       uses: reactivecircus/android-emulator-runner@v2
       with:
          api-level: 29
-         script: mvn clean test -DXmlFile=testng_mobile.xml -Pandroid
+         run: mvn test -DXmlFile=testng_mobile.xml -Pandroid
