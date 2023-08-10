@@ -31,6 +31,12 @@ jobs:
       with:
          api-level: 29
          target: default
+         cpu-arch: x86
+         avd-name: test
+         force-avd-creation: true
+         emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
+         disable-animations: true
+         emulator-boot-timeout: 600
 
 
     - name: Build with Maven
