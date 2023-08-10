@@ -10,7 +10,7 @@ on:
 jobs:
   run-mobile-tests:
    runs-on: macos-latest
-    steps:
+   steps:
     - name: pull the project
       uses: actions/checkout@v2
     - name: Set up JDK 15
