@@ -1,6 +1,7 @@
 name: Android CI
 
 on:
+  workflow_dispatch:
   push:
     branches: [ "master" ]
   pull_request:
@@ -9,18 +10,28 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: set up JDK 11
-      uses: actions/setup-java@v3
-      with:
-        java-version: '11'
-        distribution: 'temurin'
-        cache: gradle
+      - uses: actions/checkout@v2
+      - name: Set up JDK 15
+        uses: actions/setup-java@v1
+        with:
+          java-version: '15'
+          distribution: 'temurin'
+          cache: maven
 
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-    - name: Build with Gradle
-      run: ./gradlew build
+     - name: Set up Appium
+       run: |
+         npm install -gappium@v2.0.0-rc.4
+         appium -v
+         appium &>/dev/null &
+
+     - name: Run appium android avd's
+       uses: reactivecircus/android-emulator-runner@v2
+       with:
+         api-level: 29
+
+
+    - name: Build with Maven
+      run: mvn clean test -DXmlFile=testng_mobile.xml -Pandroid

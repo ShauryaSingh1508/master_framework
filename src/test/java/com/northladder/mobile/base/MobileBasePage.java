@@ -246,6 +246,7 @@ public class MobileBasePage {
                         desiredCapabilities.setCapability("avd", deviceName);
                         desiredCapabilities.setCapability("avdLaunchTimeout", 120000);
                     }
+                    desiredCapabilities.setCapability("androidInstallTimeout", 120000);
                     desiredCapabilities.setCapability("systemPort", systemPort);
                     desiredCapabilities.setCapability("chromeDriverPort", chromeDriverPort);
                     String androidAppUrl = System.getProperty("user.dir") + File.separator + "src" + File.separator + "test"
@@ -253,7 +254,8 @@ public class MobileBasePage {
                     //	String androidAppUrl = getClass().getResource(props.getProperty("androidAppLocation")).getFile();
                     utils.log().info("appUrl is " + androidAppUrl);
                     //desiredCapabilities.setCapability("app", androidAppUrl);
-                    driver = new AndroidDriver(url, desiredCapabilities);
+                   // driver = new AndroidDriver(url, desiredCapabilities);
+                    driver = new AndroidDriver(new URL("http://localhost:4444/wd/hub"), desiredCapabilities);
 
                 }
                 case "iOS" -> {
