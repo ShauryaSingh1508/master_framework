@@ -11,7 +11,7 @@
         <parameter name="systemPort" value="10000" />
         <parameter name="chromeDriverPort" value="11000" />
         <classes>
-            <class name="com.northladder.mobile.tests.LoginTests"/>
+            <class name="com.northladder.mobile.tests.LoginTest"/>
 <!--            <class name="com.qa.tests.ProductTests"/>-->
         </classes>
     </test>

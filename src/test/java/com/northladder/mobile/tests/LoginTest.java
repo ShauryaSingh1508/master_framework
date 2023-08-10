@@ -13,7 +13,7 @@ import org.testng.annotations.*;
 import java.io.InputStream;
 import java.lang.reflect.Method;
 
-public class LoginTests extends MobileBasePage {
+public class LoginTest extends MobileBasePage {
 	LoginPage loginPage;
 	ProductsPage productsPage;
 	JSONObject loginUsers;
