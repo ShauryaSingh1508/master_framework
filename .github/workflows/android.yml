@@ -9,7 +9,7 @@ on:
 
 jobs:
   run-mobile-tests:
-   runs-on: macos-latest
+   runs-on: macos-13
    steps:
     - name: pull the project
       uses: actions/checkout@v2
