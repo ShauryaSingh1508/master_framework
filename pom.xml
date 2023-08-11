@@ -23,7 +23,7 @@
                    <!-- <parallel>methods</parallel>
                     <threadCount>6</threadCount>-->
                     <suiteXmlFiles>
-                        <suiteXmlFile>testng.xml</suiteXmlFile>
+                        <suiteXmlFile>testng_mobile.xml</suiteXmlFile>
                     </suiteXmlFiles>
                     <testFailureIgnore>true</testFailureIgnore>
                 </configuration>
