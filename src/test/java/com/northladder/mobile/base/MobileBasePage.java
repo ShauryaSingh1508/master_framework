@@ -255,7 +255,7 @@ public class MobileBasePage {
                     utils.log().info("appUrl is " + androidAppUrl);
                     //desiredCapabilities.setCapability("app", androidAppUrl);
                    // driver = new AndroidDriver(url, desiredCapabilities);
-                    driver = new AndroidDriver(new URL("http://localhost:4723/wd/hub/session"), desiredCapabilities);
+                    driver = new AndroidDriver(new URL("http://localhost:4723/wd/hub"), desiredCapabilities);
 
                 }
                 case "iOS" -> {
