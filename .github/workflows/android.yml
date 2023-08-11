@@ -22,19 +22,19 @@ jobs:
 
     - name: Set up Appium
       run: |
-         npm install -g appium@v2.0.0-rc.4 -uiautomator2-driver
+         npm install -g appium@v2.0.0-rc.4
          appium -v
-#         appium &>/dev/null &
+         appium &>/dev/null &
 
-#    - name: Run appium android avd's
-#      uses: reactivecircus/android-emulator-runner@v2
-#      with:
-#         api-level: 29
-#         script: mvn clean test -DsuiteXmlFile=testng_mobile.xml -Pandroid
+    - name: Run appium android avd's
+      uses: reactivecircus/android-emulator-runner@v1
+      with:
+         api-level: 28
+         script: mvn clean test -DsuiteXmlFile=testng_mobile.xml -Pandroid
 
 
-    - name: Build with Maven
-      run: mvn clean test -DsuiteXmlFile=testng_mobile.xml -Pandroid
+#    - name: Build with Maven
+#      run: mvn clean test -DsuiteXmlFile=testng_mobile.xml -Pandroid
 #
 #    - name: Terminate Emulator
 #      run: /Users/runner/Library/Android/sdk/platform-tools/adb -s emulator-5554 emu kill
