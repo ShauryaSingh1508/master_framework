@@ -36,4 +36,4 @@ jobs:
       run: mvn clean test -DXmlFile=testng_mobile.xml -Pandroid
 
     - name: Terminate Emulator
-        run: /Users/runner/Library/Android/sdk/platform-tools/adb -s emulator-5554 emu kill
+      run: /Users/runner/Library/Android/sdk/platform-tools/adb -s emulator-5554 emu kill
