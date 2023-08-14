@@ -24,7 +24,7 @@ jobs:
       run: |
          npm install -g appium@v2.0.0-rc.4
          appium driver install uiautomator2
-         appium plugin install appium-uiautomator2-server
+         appium plugin install --source=npm appium-uiautomator2-server
          appium
          appium -v
 #         appium &>/dev/null &
@@ -33,7 +33,19 @@ jobs:
       uses: reactivecircus/android-emulator-runner@v1
       with:
          api-level: 28
+         arch: x86
+         profile: Pixel_6_API_34
+         abi: x86_64
          script: mvn clean test -DsuiteXmlFile=testng_mobile.xml -Pandroid
+
+    - name: Run Appium Tests
+        run: |
+          # Set up any required environment variables
+          export APPIUM_URL=http://localhost:4723/wd/hub
+          export DEVICE_UDID=emulator-5554
+          
+          # Run your Appium tests
+          mvn clean test -DsuiteXmlFile=testng_mobile.xml -Pandroid    
 
 
 #    - name: Build with Maven
