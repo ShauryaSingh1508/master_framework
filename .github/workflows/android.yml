@@ -21,10 +21,11 @@ jobs:
           cache: maven
 
     - name: Set up Appium
-      run: |
-         npm install -g appium@v2.0.0-rc.4
-         appium -v
-         appium &>/dev/null &
+      uses: moatazeldebsy/appium-server-gitHub-action@V1.0.4
+#      run: |
+#         npm install -g appium@v2.0.0-rc.4
+#         appium -v
+#         appium &>/dev/null &
 
     - name: Run appium android avd's
       uses: reactivecircus/android-emulator-runner@v1
