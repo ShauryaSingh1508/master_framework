@@ -39,7 +39,7 @@ jobs:
          script: mvn clean test -DsuiteXmlFile=testng_mobile.xml -Pandroid
 
     - name: Run Appium Tests
-        run: |
+      run: |
           # Set up any required environment variables
           export APPIUM_URL=http://localhost:4723/wd/hub
           export DEVICE_UDID=emulator-5554
