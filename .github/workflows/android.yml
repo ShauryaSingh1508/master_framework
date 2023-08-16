@@ -26,7 +26,6 @@ jobs:
          appium driver install uiautomator2
          appium plugin install images
          appium --use-plugins appium-uiautomator2,images
-         appium
          appium -v
 #         appium &>/dev/null &
 
