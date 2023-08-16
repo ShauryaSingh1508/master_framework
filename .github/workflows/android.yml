@@ -24,7 +24,7 @@ jobs:
       run: |
          npm install -g appium@v2.0.0-rc.4
          appium driver install uiautomator2
-         appium plugin install appium-uiautomator2-server
+         appium install appium-uiautomator2-server
          appium
          appium -v
 #         appium &>/dev/null &
