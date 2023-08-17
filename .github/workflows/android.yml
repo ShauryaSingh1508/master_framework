@@ -23,9 +23,9 @@ jobs:
     - name: Set up Appium
       run: |
          npm install -g appium@v2.0.0-rc.4
-         appium driver install uiautomator2
-         appium plugin install images
-         appium --use-plugins appium-uiautomator2,images
+#         appium driver install uiautomator2
+#         appium plugin install images
+#         appium --use-plugins appium-uiautomator2,images
          appium &>/dev/null &
 
     - name: Run appium android avd's
