@@ -35,10 +35,10 @@ jobs:
       uses: reactivecircus/android-emulator-runner@v1
       with:
          api-level: 29
-         arch: x86
-         profile: Pixel_6_API_34
-         abi: x86_64
-#         script: mvn clean test -DsuiteXmlFile=testng_mobile.xml -Pandroid
+#         arch: x86
+#         profile: Pixel_6_API_34
+#         abi: x86_64
+         script: mvn clean test -DsuiteXmlFile=testng_mobile.xml -Pandroid
 
     - name: Run Appium Tests
       run: |
