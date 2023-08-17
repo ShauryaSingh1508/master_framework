@@ -35,7 +35,7 @@ jobs:
          arch: x86
          profile: Pixel_6_API_34
          abi: x86_64
-         script: mvn clean test -DsuiteXmlFile=testng_mobile.xml -Pandroid
+#         script: mvn clean test -DsuiteXmlFile=testng_mobile.xml -Pandroid
 
     - name: Run Appium Tests
       run: |
