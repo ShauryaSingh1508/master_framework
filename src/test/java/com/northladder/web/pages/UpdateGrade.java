@@ -197,29 +197,35 @@ public class UpdateGrade extends WebBasePage{
        /* Cell cell8 = row.getCell(6);
         thirdGradePercentage = dataFormatter.formatCellValue(cell7);*/
             List<WebElement> webElementsList = driver.findElements(getListOfChecklist);
-            for (int i = 0; i < webElementsList.size(); i++) {
-                String text = getText(By.xpath(getchecklistvalue1 + (i + 1) + getchecklistvalue2));
-                logutils.log().info("Clicking on edit icon for the checklist:-> " + text);
+            for (int i = 0; i < webElementsList.size()-1; i++) {
+
+//                logutils.log().info("Clicking on edit icon for the checklist:-> " + text);
                 Thread.sleep(2000);
-                click(By.xpath(getchecklistvalue1 + (i + 1) + clickChecklistEdit));
-                for (Cell grade : itemConditionList) {
-                    switch (grade.getStringCellValue()) {
-                        case "B" -> {
-                            String itemConditionDetail = grade + " - " + secondGradePercentage;
-                            logutils.log().info("Selecting the grade to change the %age to  " + itemConditionDetail);
-                            selectItemCondition(grade.getStringCellValue(), itemConditionDetail);
+                String text = getText(By.xpath(getchecklistvalue1 + (i + 1) + getchecklistvalue2));
+                if(!text.equalsIgnoreCase("Wifi Check") && !text.equalsIgnoreCase("Check Wifi")) {
+                    logutils.log().info("Clicking on edit icon for the checklist:-> " + text);
+                    click(By.xpath(getchecklistvalue1 + (i + 1) + clickChecklistEdit));
+
+                    for (Cell grade : itemConditionList) {
+                        switch (grade.getStringCellValue()) {
+                            case "B" -> {
+                                String itemConditionDetail = grade + " - " + secondGradePercentage;
+                                logutils.log().info("Selecting the grade to change the %age to  " + itemConditionDetail);
+                                selectItemCondition(grade.getStringCellValue(), itemConditionDetail);
+                            }
+
+                            case "C" -> {
+                                String itemConditionDetail = grade + " - " + thirdGradePercentage;
+                                logutils.log().info("Selecting the grade to change the %age to  " + itemConditionDetail);
+                                selectItemCondition(grade.getStringCellValue(), itemConditionDetail);
+                            }
+
+
                         }
-
-                        case "C" -> {
-                            String itemConditionDetail = grade + " - " + thirdGradePercentage;
-                            logutils.log().info("Selecting the grade to change the %age to  " + itemConditionDetail);
-                            selectItemCondition(grade.getStringCellValue(), itemConditionDetail);
-                        }
-
-
                     }
+                    finalSave();
                 }
-                finalSave();
+
 
             }
         }catch(Exception e){

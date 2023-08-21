@@ -4,6 +4,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.manager.SeleniumManager;
+import org.openqa.selenium.manager.SeleniumManagerOutput;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
@@ -13,6 +15,7 @@ import java.util.HashMap;
 
 public class ChromeDriverManager implements DriverManager{
     RemoteWebDriver driver = null;
+
     String username= "shauryasingh1508";
     String accesskey= "dlUtov4GDGyx41JnPqhgpIeQlVbJz90BXfwIonZ48cCpq5S03G";
     String gridURL = "@hub.lambdatest.com/wd/hub";
@@ -48,11 +51,19 @@ public class ChromeDriverManager implements DriverManager{
             browserOptions.setCapability("LT:Options", ltOptions);
             driver = new RemoteWebDriver(new URL("https://" + username + ":" + accesskey + gridURL),browserOptions);
         } else{
-            WebDriverManager.chromedriver().cachePath("Drivers").setup();
+//            WebDriverManager.chromedriver().clearDriverCache().clearResolutionCache();
+
+//           WebDriverManager.chromedriver().driverVersion("latest").cachePath("Drivers").setup();
+//            System.setProperty("webdriver.chrome.driver", "Drivers/chromedriver-win32/chromedriver.exe");
+
             ChromeOptions options = new ChromeOptions();
+//            options.setBrowserVersion("116.0.5845.96");
             options.addArguments("--remote-allow-origins=*", "ignore-certificate-errors");
             //options.addArguments("--headless");
-            driver = new ChromeDriver(options);
+            SeleniumManagerOutput.Result result = SeleniumManager.getInstance().getDriverPath(options,false);
+
+            System.out.println(result.getDriverPath()+"  "+result.getBrowserPath());
+            driver = new ChromeDriver();
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
             driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(100));
             driver.manage().window().maximize();
