@@ -24,7 +24,7 @@ jobs:
       run: |
          npm install -g appium@v2.0.0-rc.4
          appium -v
-         appium &>/dev/null &
+         appium --base-path /wd/hub &>/dev/null &
 
 #         appium driver install uiautomator2
 #         appium plugin install images
