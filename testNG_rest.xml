@@ -16,18 +16,13 @@
 <!--        </packages>-->
 <!--    </test>-->
    <test name="APITest" >
-    <!--thread-count="2" parallel="methods"-->
-        <parameter name="browser"  value="CHROME"/>
-        <parameter name="env"  value="DEV"/>
-       <parameter name="envToExecute"  value="local"/>
-<!--       <parameter name="mail"  value="mailtrap"/>-->
+       <parameter name="countryCode" value="IN" />
+       <parameter name="postalCode" value="134109" />
+       <parameter name="countryName" value="INDIA" />
+
         <classes>
-                    <class name="com.test.web.tests.UpdateGradeTest"/>
-<!--                    <class name="org.northladder.api.tests.GetMailtrapPropsTest"/>-->
-<!--                        <methods>-->
-<!--                            <include name="getMessageID"/>-->
-<!--                        </methods>-->
-<!--                    </class>-->
+                    <class name="com.test.api.tests.ZippopotamTest"/>
+
 
         </classes>
     </test>

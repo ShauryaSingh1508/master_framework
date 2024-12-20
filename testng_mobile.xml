@@ -2,7 +2,7 @@
 <suite name="Suite" parallel="false">
     <test name="pixel_6_pro">
         <listeners>
-            <listener class-name="com.northladder.listeners.TestListener" />
+            <listener class-name="com.test.listeners.TestListener" />
         </listeners>
         <parameter name="emulator" value="true" />
         <parameter name="platformName" value="Android" />
@@ -11,7 +11,7 @@
         <parameter name="systemPort" value="10000" />
         <parameter name="chromeDriverPort" value="11000" />
         <classes>
-            <class name="com.northladder.mobile.tests.LoginTest"/>
+            <class name="com.test.mobile.tests.LoginTest"/>
 <!--            <class name="com.qa.tests.ProductTests"/>-->
         </classes>
     </test>
