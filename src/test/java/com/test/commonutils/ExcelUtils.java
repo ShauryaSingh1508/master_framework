@@ -97,11 +97,6 @@ public class ExcelUtils {
                     cell.setCellValue("PASS");
                     CellStyle cellStyle = workbook.createCellStyle();
                     //To set the Font color
-/*                    Font font = workbook.createFont();
-                    font.setColor(IndexedColors.GREEN.getIndex());
-                    cellStyle.setFont(font);*/
-
-                    //To fill the cell color in the status column
                     cellStyle.setFillForegroundColor(IndexedColors.LIGHT_GREEN.getIndex());
                     cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
                     // Apply the cell style to the cell
@@ -118,31 +113,4 @@ public class ExcelUtils {
 
     }
 
-
-   /* public static void executeGrades() throws Exception {
-        ArrayList<Cell> gList = ExcelUtils.getGradlist();
-        for(Row row:ExcelUtils.getSheet()) {
-            if (row.getRowNum() > 0) {
-                for (Cell grade : gList) {
-                    switch (grade.getStringCellValue()) {
-                        case "A" -> System.out.println("this is grade A");
-                        case "B" -> System.out.println("this is grade B");
-                        case "C" -> System.out.println("this is grade C");
-                        case "D" -> System.out.println("this is grade D");
-                        default -> throw new Exception("Invalid grade! - ");
-                    }
-
-
-                }
-            }
-        }
-
-    }*/
-
-
-
-
-//    public static void main(String[] args) throws Exception {
-//        ExcelUtils.setStatus();
-//    }
 }

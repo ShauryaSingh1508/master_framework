@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 
 public class ZippopotamTest{
 
-    @Parameters({ "countryCode", "postalCode","countryName"})
+  @Parameters({ "countryCode", "postalCode","countryName"})
   @Test(description = "Should be able to return the name of the country")
   public static void getCountryName(@Optional String countryCode, @Optional String postalCode,@Optional String countryName) throws Exception {
       String actualCountryName = new Zippopotam(countryCode,postalCode).shouldReturnCountryName();

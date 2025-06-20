@@ -44,7 +44,7 @@ public class Emailparser {
         Session mailSession = Session.getInstance(props);
         mailSession.setDebug(true);
         Store store = mailSession.getStore("imap");
-        store.connect("outlook.office365.com", "shaurya.singh@northladder.com", "Shivi!!579");
+        store.connect("outlook.office365.com", "someemail@gmail.com", "Password");
 
         try {
             // Access the inbox folder

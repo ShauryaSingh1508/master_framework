@@ -1,22 +1,14 @@
 package com.test.web.factory;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.WebDriver;
+//import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.manager.SeleniumManager;
-import org.openqa.selenium.manager.SeleniumManagerOutput;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.remote.service.DriverFinder;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
+
 
 public class ChromeDriverManager implements DriverManager{
     RemoteWebDriver driver;
@@ -28,10 +20,18 @@ public class ChromeDriverManager implements DriverManager{
     public RemoteWebDriver createDriver(String envToExecute) throws MalformedURLException {
 
         if (envToExecute.equalsIgnoreCase("github")) {
-            WebDriverManager.chromedriver().cachePath("Drivers").setup();
+            //WebDriverManager.chromedriver().cachePath("Drivers").setup();
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--remote-allow-origins=*", "ignore-certificate-errors");
-            //options.addArguments("--headless");
+            //options.addArguments("--headless=new"); // Use "headless" for Chrome 114 and above
+            options.addArguments("--disable-gpu");
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-dev-shm-usage");
+            //options.addArguments("--user-data-dir=" + tempProfile);
+            options.addArguments("--disable-popup-blocking");
+            options.addArguments("--start-maximized");
+            options.addArguments("--disable-infobars");
+            options.addArguments("--disable-notifications");
             driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), options);
             //driver = new RemoteWebDriver(new URL("http://zalenium:4444/wd/hub"), options);
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -56,22 +56,22 @@ public class ChromeDriverManager implements DriverManager{
             browserOptions.setCapability("LT:Options", ltOptions);
             driver = new RemoteWebDriver(new URL("https://" + username + ":" + accesskey + gridURL),browserOptions);
         } else{
-//            WebDriverManager.chromedriver().clearDriverCache().clearResolutionCache();
-
-//           WebDriverManager.chromedriver().driverVersion("latest").cachePath("Drivers").setup();
-//            System.setProperty("webdriver.chrome.driver", "Drivers/chromedriver-win32/chromedriver.exe");
 
             ChromeOptions options = new ChromeOptions();
 //            options.setBrowserVersion("116.0.5845.96");
             options.addArguments("--remote-allow-origins=*", "ignore-certificate-errors");
+            //options.addArguments("--headless=new"); // Use "headless" for Chrome 114 and above
+            options.addArguments("--disable-gpu");
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-dev-shm-usage");
+            //options.addArguments("--user-data-dir=" + tempProfile);
+            options.addArguments("--disable-popup-blocking");
             options.addArguments("--start-maximized");
-            //options.setBrowserVersion("beta");
-            //DriverFinder finder = new DriverFinder(ChromeDriverService.createDefaultService(), options);
-            //options.setBinary(finder.getBrowserPath());
-            //options.addArguments("--headless");
-            SeleniumManagerOutput.Result result = SeleniumManager.getInstance().getDriverPath(options,false);
+            options.addArguments("--disable-infobars");
+            options.addArguments("--disable-notifications");
+            //SeleniumManagerOutput.Result result = SeleniumManager.getInstance().getDriverPath(options,false);
 
-            System.out.println(result.getDriverPath()+"  "+result.getBrowserPath());
+            //System.out.println(result.getDriverPath()+"  "+result.getBrowserPath());
             //System.setProperty("webdriver.http.factory", "jdk");
             driver = new ChromeDriver(options);
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));

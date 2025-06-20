@@ -36,12 +36,6 @@ public class ConfigLoader {
         else throw new RuntimeException("property baseUrl is not specified in the stg_config.properties file");
     }
 
-    public String getMailTrapBaseUrl(){
-        String prop = properties.getProperty("mailTrapApiBaseURI");
-        if(prop != null) return prop;
-        else throw new RuntimeException("property baseUrl is not specified in the stg_config.properties file");
-    }
-
     public String getUsername(){
         String prop = properties.getProperty("username");
         if(prop != null) return prop;
