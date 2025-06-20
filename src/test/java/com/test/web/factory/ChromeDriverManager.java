@@ -13,8 +13,8 @@ import java.util.HashMap;
 public class ChromeDriverManager implements DriverManager{
     RemoteWebDriver driver;
 
-    String username= "shauryasingh1508";
-    String accesskey= "dlUtov4GDGyx41JnPqhgpIeQlVbJz90BXfwIonZ48cCpq5S03G";
+    String username= "YourLambdatestUsername"; // Replace with your actual username
+    String accesskey= "YourLambdatestAccessKey"; // Replace with your actual access key
     String gridURL = "@hub.lambdatest.com/wd/hub";
     @Override
     public RemoteWebDriver createDriver(String envToExecute) throws MalformedURLException {
